@@ -6,19 +6,7 @@ import Modal from '@/components/ui/Modal';
 import api from '@/lib/api';
 import toast from 'react-hot-toast';
 import { CheckCircle, XCircle, MapPin, Phone, Clock } from 'lucide-react';
-
-interface Location {
-  _id: string;
-  name: string;
-  owner?: { name: string; email: string; phone: string };
-  type: string;
-  description?: string;
-  address: { street: string; city: string; province: string; fullAddress?: string };
-  contact: { phone: string; email?: string };
-  operatingHours?: any;
-  status: 'pending' | 'approved' | 'rejected';
-  rejectionReason?: string;
-}
+import { Location } from '@/types/location'; // ✅ TAMBAHKAN INI
 
 interface LocationActionModalProps {
   location: Location | null;
