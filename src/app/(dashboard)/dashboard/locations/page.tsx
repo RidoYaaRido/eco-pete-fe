@@ -11,24 +11,7 @@ import AdminEditLocationForm from '@/components/dashboard/AdminEditLocationForm'
 import api from '@/lib/api';
 import toast from 'react-hot-toast';
 import { Plus, Filter, AlertCircle } from 'lucide-react';
-
-interface Location {
-  _id: string;
-  name: string;
-  owner?: { name: string; email: string; phone: string };
-  type: 'bank_sampah' | 'pengepul' | 'daur_ulang';
-  address: { street: string; city: string; province: string; fullAddress?: string; postalCode?: string };
-  contact: { phone: string; email?: string; whatsapp?: string };
-  location: { coordinates: [number, number] };
-  services?: string[];
-  description?: string;
-  operatingHours?: any;
-  status: 'pending' | 'approved' | 'rejected';
-  rejectionReason?: string;
-  isVerified: boolean;
-  isActive: boolean;
-  createdAt: string;
-}
+import { Location } from '@/types/location';
 
 export default function ManageLocationsPage() {
   const { user } = useAuthStore();
