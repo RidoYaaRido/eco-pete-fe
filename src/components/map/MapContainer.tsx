@@ -74,7 +74,8 @@ export default function MapContainer() {
       );
     } else {
       console.warn('Geolocation is not supported by this browser.');
-      toast.warn('Browser tidak mendukung geolocation.');
+      // ✅ PERBAIKAN 1: Mengganti toast.warn() menjadi toast() standar
+      toast('Browser tidak mendukung geolocation.');
       fetchLocations();
     }
   }, [fetchLocations, setUserLocation]);
@@ -263,8 +264,9 @@ export default function MapContainer() {
                    >
                      Detail
                    </Link>
+                   {/* ✅ PERBAIKAN 2: Mengganti URL Google Maps yang salah */}
                    <a
-                     href={`https://www.google.com/maps/dir/?api=1&destination=${selectedLocation.location?.coordinates?.[1]},${selectedLocation.location?.coordinates?.[0]}`}
+                     href={`https://maps.google.com/?q=${selectedLocation.location?.coordinates?.[1]},${selectedLocation.location?.coordinates?.[0]}`}
                      target="_blank"
                      rel="noopener noreferrer"
                      className="flex-1 bg-blue-600 text-white text-center py-2 px-3 rounded-lg hover:bg-blue-700 text-sm font-medium transition"
