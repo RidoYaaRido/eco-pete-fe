@@ -1,6 +1,7 @@
 // src/store/authStore.ts
 import { create } from 'zustand';
 import api from '@/lib/api'; // Pastikan path ini benar
+import { OperatingHours } from '@/types/location'; // <-- TAMBAHKAN IMPOR INI
 
 // --- Interface ---
 interface UserAddress { // Definisikan tipe untuk alamat jika belum ada
@@ -15,6 +16,7 @@ interface UserBusinessInfo { // Definisikan tipe untuk info bisnis
   businessType?: string;
   certification?: string;
   // Tambahkan field lain jika ada di model User.js
+  operatingHours?: OperatingHours;
 }
 
 interface User {
