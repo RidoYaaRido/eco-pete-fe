@@ -7,32 +7,7 @@ import OperatingHoursEditor, { OperatingHours } from '@/components/dashboard/Ope
 import api from '@/lib/api';
 import toast from 'react-hot-toast';
 import { MapPin, Phone, Package, Shield } from 'lucide-react';
-
-interface Location {
-  _id: string;
-  name: string;
-  type: string;
-  description?: string;
-  address: {
-    street: string;
-    city: string;
-    province: string;
-    postalCode?: string;
-  };
-  location: {
-    coordinates: [number, number];
-  };
-  contact: {
-    phone: string;
-    email?: string;
-    whatsapp?: string;
-  };
-  services?: string[];
-  status: 'pending' | 'approved' | 'rejected';
-  isVerified: boolean;
-  isActive: boolean;
-  operatingHours?: OperatingHours;
-}
+import { Location, OperatingHours } from '@/types/location';
 
 interface AdminEditLocationFormProps {
   location: Location | null;
