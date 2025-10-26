@@ -167,9 +167,11 @@ export default function ReviewList({ locationId }: ReviewListProps) {
               <div className="flex items-center gap-4 pt-4 border-t border-gray-200">
                 <button
                   onClick={() => handleHelpful(review._id)}
-                  disabled={!user || review.helpful.includes(user._id)}
+                  // ✅ PERBAIKAN 1: Mengubah user._id menjadi user.id
+                  disabled={!user || review.helpful.includes(user.id)} 
                   className={`flex items-center gap-2 text-sm ${
-                    user && review.helpful.includes(user._id)
+                    // ✅ PERBAIKAN 2: Mengubah user._id menjadi user.id
+                    user && review.helpful.includes(user.id)
                       ? 'text-green-600 font-semibold'
                       : 'text-gray-600 hover:text-green-600'
                   } disabled:cursor-not-allowed transition`}
@@ -178,7 +180,8 @@ export default function ReviewList({ locationId }: ReviewListProps) {
                   Membantu ({review.helpful.length})
                 </button>
 
-                {user && user._id !== review.user._id && !review.flagged && (
+                {/* ✅ PERBAIKAN 3: Mengubah user._id menjadi user.id */}
+                {user && user.id !== review.user._id && !review.flagged && (
                   <button
                     onClick={() => handleFlag(review._id)}
                     className="flex items-center gap-2 text-sm text-gray-600 hover:text-red-600 transition"
