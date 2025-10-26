@@ -2,21 +2,12 @@
 'use client';
 
 import { Clock, X } from 'lucide-react';
+import { OperatingHours } from '@/types/location';
 
 export interface DayHours {
   open: string;
   close: string;
   isClosed: boolean;
-}
-
-export interface OperatingHours {
-  monday: DayHours;
-  tuesday: DayHours;
-  wednesday: DayHours;
-  thursday: DayHours;
-  friday: DayHours;
-  saturday: DayHours;
-  sunday: DayHours;
 }
 
 interface OperatingHoursEditorProps {
