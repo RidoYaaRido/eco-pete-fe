@@ -2,14 +2,16 @@
 'use client';
 
 import { Clock, X } from 'lucide-react';
+// ✅ 1. Impor tipe terpusat kita
 import { OperatingHours } from '@/types/location';
 
-export interface DayHours {
-  open: string;
-  close: string;
-  isClosed: boolean;
-}
+// ❌ 2. Hapus interface DayHours dan OperatingHours lokal dari sini
+/*
+export interface DayHours { ... }
+export interface OperatingHours { ... }
+*/
 
+// Props interface ini sekarang akan otomatis menggunakan OperatingHours yang diimpor
 interface OperatingHoursEditorProps {
   operatingHours: OperatingHours;
   onChange: (hours: OperatingHours) => void;
