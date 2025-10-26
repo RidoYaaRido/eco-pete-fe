@@ -8,6 +8,7 @@ import OperatingHoursEditor, { OperatingHours } from '@/components/dashboard/Ope
 import api from '@/lib/api';
 import toast from 'react-hot-toast';
 import { MapPin, Phone, Clock, Package, Map } from 'lucide-react';
+import { Location, OperatingHours } from '@/types/location';
 
 interface CreateLocationFormProps {
   isOpen: boolean;
