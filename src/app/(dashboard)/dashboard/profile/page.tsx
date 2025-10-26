@@ -4,6 +4,7 @@
 import { useState, useEffect } from 'react';
 import { useAuthStore } from '@/store/authStore';
 import api from '@/lib/api';
+import { OperatingHours } from '@/types/location'; // <-- TAMBAHKAN IMPOR INI
 import { User, Phone, Mail, MapPin, Building2, Save, Key, Award } from 'lucide-react';
 
 export default function ProfilePage() {
@@ -24,6 +25,16 @@ export default function ProfilePage() {
       postalCode: ''
     }
   });
+
+  const defaultOperatingHours: OperatingHours = {
+  monday: { open: '08:00', close: '17:00', isClosed: false },
+  tuesday: { open: '08:00', close: '17:00', isClosed: false },
+  wednesday: { open: '08:00', close: '17:00', isClosed: false },
+  thursday: { open: '08:00', close: '17:00', isClosed: false },
+  friday: { open: '08:00', close: '17:00', isClosed: false },
+  saturday: { open: '08:00', close: '17:00', isClosed: false },
+  sunday: { open: '08:00', close: '17:00', isClosed: true }
+}
 
   const [businessData, setBusinessData] = useState({
     businessName: '',
