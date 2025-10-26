@@ -8,30 +8,7 @@ import api from '@/lib/api';
 import toast from 'react-hot-toast';
 import { MapPin, Phone, Package, Map, LocateFixed } from 'lucide-react';
 import dynamic from 'next/dynamic';
-
-interface Location {
-  _id: string;
-  name: string;
-  type: string;
-  description?: string;
-  address: {
-    street: string;
-    city: string;
-    province: string;
-    postalCode?: string;
-  };
-  location?: {
-    type?: 'Point';
-    coordinates?: [number, number];
-  };
-  contact: {
-    phone: string;
-    email?: string;
-    whatsapp?: string;
-  };
-  services?: string[];
-  operatingHours?: OperatingHours;
-}
+import { Location, OperatingHours } from '@/types/location';
 
 interface EditLocationFormProps {
   location: Location | null;
