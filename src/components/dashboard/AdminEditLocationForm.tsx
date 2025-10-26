@@ -3,7 +3,7 @@
 
 import { useState, useEffect } from 'react';
 import Modal from '@/components/ui/Modal';
-import OperatingHoursEditor, { OperatingHours } from '@/components/dashboard/OperatingHoursEditor';
+import OperatingHoursEditor from '@/components/dashboard/OperatingHoursEditor';
 import api from '@/lib/api';
 import toast from 'react-hot-toast';
 import { MapPin, Phone, Package, Shield } from 'lucide-react';
