@@ -3,16 +3,7 @@
 
 import { Edit, Eye, Edit2 } from 'lucide-react';
 import { useEffect } from 'react';
-
-interface Location {
-  _id: string;
-  name: string;
-  owner?: { name: string };
-  type: 'bank_sampah' | 'pengepul' | 'daur_ulang' ;
-  address: { city: string; province: string };
-  status: 'pending' | 'approved' | 'rejected';
-  createdAt: string;
-}
+import { Location } from '@/types/location';
 
 interface LocationTableProps {
   locations: Location[];
