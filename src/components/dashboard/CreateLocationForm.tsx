@@ -4,7 +4,7 @@
 import { useState } from 'react';
 import Modal from '@/components/ui/Modal';
 import LocationPickerMap from '@/components/map/LocationPickerMap';
-import OperatingHoursEditor, { OperatingHours } from '@/components/dashboard/OperatingHoursEditor';
+import OperatingHoursEditor from '@/components/dashboard/OperatingHoursEditor'; // ✅ Diubah
 import api from '@/lib/api';
 import toast from 'react-hot-toast';
 import { MapPin, Phone, Clock, Package, Map } from 'lucide-react';
