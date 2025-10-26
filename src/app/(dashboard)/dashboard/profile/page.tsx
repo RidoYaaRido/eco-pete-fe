@@ -4,8 +4,19 @@
 import { useState, useEffect } from 'react';
 import { useAuthStore } from '@/store/authStore';
 import api from '@/lib/api';
-import { OperatingHours } from '@/types/location'; // <-- TAMBAHKAN IMPOR INI
+import { OperatingHours } from '@/types/location';
 import { User, Phone, Mail, MapPin, Building2, Save, Key, Award } from 'lucide-react';
+
+// Variabel default ini sudah benar
+const defaultOperatingHours: OperatingHours = {
+  monday: { open: '08:00', close: '17:00', isClosed: false },
+  tuesday: { open: '08:00', close: '17:00', isClosed: false },
+  wednesday: { open: '08:00', close: '17:00', isClosed: false },
+  thursday: { open: '08:00', close: '17:00', isClosed: false },
+  friday: { open: '08:00', close: '17:00', isClosed: false },
+  saturday: { open: '08:00', close: '17:00', isClosed: false },
+  sunday: { open: '08:00', close: '17:00', isClosed: true }
+}
 
 export default function ProfilePage() {
   const { user, updateProfile } = useAuthStore();
@@ -26,24 +37,10 @@ export default function ProfilePage() {
     }
   });
 
-  const defaultOperatingHours: OperatingHours = {
-  monday: { open: '08:00', close: '17:00', isClosed: false },
-  tuesday: { open: '08:00', close: '17:00', isClosed: false },
-  wednesday: { open: '08:00', close: '17:00', isClosed: false },
-  thursday: { open: '08:00', close: '17:00', isClosed: false },
-  friday: { open: '08:00', close: '17:00', isClosed: false },
-  saturday: { open: '08:00', close: '17:00', isClosed: false },
-  sunday: { open: '08:00', close: '17:00', isClosed: true }
-}
-
   const [businessData, setBusinessData] = useState({
     businessName: '',
     businessType: '',
-    operatingHours: {
-      open: '',
-      close: '',
-      days: []
-    }
+    operatingHours: defaultOperatingHours // ✅ PERBAIKAN 1: Gunakan default yang benar
   });
 
   const [passwordData, setPasswordData] = useState({
@@ -70,11 +67,7 @@ export default function ProfilePage() {
         setBusinessData({
           businessName: user.businessInfo.businessName || '',
           businessType: user.businessInfo.businessType || '',
-          operatingHours: user.businessInfo.operatingHours || {
-            open: '',
-            close: '',
-            days: []
-          }
+          operatingHours: user.businessInfo.operatingHours || defaultOperatingHours // ✅ PERBAIKAN 2: Gunakan default yang benar
         });
       }
     }
@@ -104,9 +97,11 @@ export default function ProfilePage() {
     setMessage({ type: '', text: '' });
 
     try {
+      // Data yang dikirim ke updateProfile sudah benar (hanya formData)
       await updateProfile(formData);
       
       if (user?.role === 'mitra') {
+        // Kirim data bisnis, termasuk operatingHours yang sudah benar
         await api.put('/auth/updatebusiness', { businessInfo: businessData });
       }
 
@@ -115,7 +110,7 @@ export default function ProfilePage() {
       
       // Reload user data
       const { data } = await api.get('/auth/me');
-      updateProfile(data.data);
+      updateProfile(data.data); // Ini akan memicu ulang useEffect
     } catch (error: any) {
       setMessage({ 
         type: 'error', 
@@ -313,6 +308,12 @@ export default function ProfilePage() {
       </div>
 
       {/* Business Information (Mitra only) */}
+      {/* CATATAN: Form ini belum menangani perubahan operatingHours.
+        Jika Anda ingin mengedit jam operasional di sini,
+        Anda perlu mengimpor dan menggunakan komponen <OperatingHoursEditor />
+        seperti di form 'CreateLocationForm'.
+        Saat ini, form hanya mengedit 'businessName' dan 'businessType'.
+      */}
       {user.role === 'mitra' && (
         <div className="bg-white rounded-lg shadow p-6">
           <h2 className="text-xl font-bold text-gray-800 mb-6">Informasi Usaha</h2>
