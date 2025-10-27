@@ -64,7 +64,7 @@ export default function FilterSidebar({ isOpen, setIsOpen }: FilterSidebarProps)
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-xl font-bold text-gray-800 flex items-center gap-2">
               <MapPin className="w-6 h-6 text-green-600" />
-              Filter Lokasi
+              Filter Lokasi daerah
             </h2>
             <button
               onClick={() => setIsOpen(false)}
